@@ -5,7 +5,7 @@ import yfinance as yf
 from eod import EodHistoricalData
 from datetime import datetime, timedelta
 import datetime as dt
-
+from streamlit_option_menu import option_menu
 
 st.set_page_config(page_title = "check.markets Risk Analysis", 
 	page_icon="💲"
