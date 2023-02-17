@@ -1,0 +1,8 @@
+eod==0.2.1
+numpy==1.20.3
+pandas==1.3.4
+plotly==5.13.0
+pyEX==0.5.0
+streamlit==1.12.0
+streamlit_option_menu==0.3.2
+yfinance==0.1.70
