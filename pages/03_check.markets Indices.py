@@ -8,9 +8,7 @@ import datetime as dt
 
 headers = {
 	"authorization": st.secrets["eod_api"],
-	"content-type": "application/json",
 	"authorization": st.secrets["secret_key"]}
-
 
 
 ### LOGO POSITIONING ###
@@ -21,7 +19,7 @@ with col1:
     st.write("")
 
 with col2:
-    st.image('/Users/cips/myfirststream/LOGO.jpg')
+    st.image('LOGO.jpg')
 
 with col3:
     st.header("")
