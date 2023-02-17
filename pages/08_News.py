@@ -3,8 +3,9 @@ import pyEX
 import streamlit as st
 
 
-headers = {
-	"authorization": st.secrets["secret_key"]}
+eod_api = st.secrets["eod_api"]
+secret_key = st.secrets["secret_key"]
+
 	
 c = pyEX.Client(secret_key)
 	
