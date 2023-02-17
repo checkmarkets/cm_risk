@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import yfinance as yf
 import streamlit as st
-import plotly
 import datetime as dt
 from datetime import datetime, timedelta
 from streamlit_option_menu import option_menu
