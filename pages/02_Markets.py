@@ -11,8 +11,10 @@ st.write(st.secrets)
 #	"authorization": st.secrets["eod_api"],
 #	"authorization": st.secrets["secret_key"]}
 
+eod_api = st.secrets["eod_api"]
+secret_key = st.secrets["secret_key"]
 
-c = pyEX.Client(secret_key)
+c = pyEX.Client(st.secrets["secret_key"])
 
 ### MARKET DASHBOARD ###
 
