@@ -28,7 +28,7 @@ st.set_page_config(page_title = "check.markets Risk Analysis",
 
 ### LOGO POSITIONING ####
 
-st.image('/Users/cips/myfirststream/casino_coverphoto.jpeg')
+#st.image('/myfirststream/casino_coverphoto.jpeg')
 
 
 #### NAVIGATION BAR ###
