@@ -1,6 +1,4 @@
 import pandas as pd
-import numpy as np
-import yfinance as yf
 import pyEX
 import streamlit as st
 
