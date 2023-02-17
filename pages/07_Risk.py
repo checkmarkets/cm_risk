@@ -8,6 +8,10 @@ from streamlit_option_menu import option_menu
 from math import sqrt
 
 
+eod_api = st.secrets["eod_api"]
+secret_key = st.secrets["secret_key"]
+
+
 ### LOGO POSITIONING ####
 
 col1, col2, col3 = st.columns(3)
