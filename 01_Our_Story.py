@@ -1,6 +1,5 @@
 import pandas as pd
 import streamlit as st
-#from streamlit_option_menu import option_menu
 
 
 headers = {
@@ -20,7 +19,7 @@ st.set_page_config(page_title = "check.markets Risk Analysis",
 
 ### LOGO POSITIONING ####
 
-#st.image('/myfirststream/casino_coverphoto.jpeg')
+#st.image('/casino_coverphoto.jpeg')
 
 
 #### NAVIGATION BAR ###
