@@ -4,7 +4,11 @@ import yfinance as yf
 import streamlit as st
 from datetime import datetime, timedelta
 import datetime as dt
+from streamlit_option_menu import option_menu
 
+st.set_page_config(page_title = "check.markets Risk Analysis", 
+	page_icon="💲"
+	)
 eod_api = st.secrets["eod_api"]
 secret_key = st.secrets["secret_key"]
 
