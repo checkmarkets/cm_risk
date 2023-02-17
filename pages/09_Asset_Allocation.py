@@ -6,11 +6,8 @@ import streamlit as st
 
 headers = {
 	"authorization": st.secrets["eod_api"],
-	"content-type": "application/json",
 	"authorization": st.secrets["secret_key"]}
 
-	
-c = pyEX.Client(secret_key)
 
 today = datetime.today()
 today = today.strftime('%Y-%m-%d')
