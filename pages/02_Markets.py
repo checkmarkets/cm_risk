@@ -5,16 +5,10 @@ from time import time
 from datetime import datetime, timedelta
 from streamlit_option_menu import option_menu
 
-st.write(st.secrets)
-
-#headers = {
-#	"authorization": st.secrets["eod_api"],
-#	"authorization": st.secrets["secret_key"]}
-
 eod_api = st.secrets["eod_api"]
 secret_key = st.secrets["secret_key"]
 
-c = pyEX.Client(st.secrets["secret_key"])
+c = pyEX.Client(secret_key)
 
 ### MARKET DASHBOARD ###
 
