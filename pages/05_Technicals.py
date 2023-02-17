@@ -6,7 +6,9 @@ import datetime as dt
 from datetime import datetime, timedelta
 from streamlit_option_menu import option_menu
 
-
+st.set_page_config(page_title = "check.markets Risk Analysis", 
+	page_icon="💲"
+	)
 
 
 #####################    P A R A M E T E R S  ###########################
