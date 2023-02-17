@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np
 import yfinance as yf
 import streamlit as st
-
+from datetime import datetime, timedelta
+import datetime as dt
 
 headers = {
 	"authorization": st.secrets["eod_api"],
