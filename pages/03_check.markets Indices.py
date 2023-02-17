@@ -5,7 +5,6 @@ import yfinance as yf
 from eod import EodHistoricalData
 from datetime import datetime, timedelta
 import datetime as dt
-import altair as alt
 
 headers = {
 	"authorization": st.secrets["eod_api"],
@@ -14,7 +13,7 @@ headers = {
 
 
 
-### LOGO POSITIONING ####
+### LOGO POSITIONING ###
 
 col1, col2, col3 = st.columns(3)
 
