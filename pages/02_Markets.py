@@ -1,5 +1,6 @@
 import streamlit as st
 import yfinance as yf
+import pyEX
 from time import time
 from datetime import datetime, timedelta
 from streamlit_option_menu import option_menu
@@ -9,6 +10,7 @@ headers = {
 	"content-type": "application/json",
 	"authorization": st.secrets["secret_key"]}
 
+c = pyEX.Client(secret_key)
 
 ### MARKET DASHBOARD ###
 
