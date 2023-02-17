@@ -1,11 +1,9 @@
 import pandas as pd
 import numpy as np
 import yfinance as yf
-import pyEX
 import streamlit as st
 from eod import EodHistoricalData
 from time import time
-import plotly
 from datetime import datetime, timedelta
 from streamlit_option_menu import option_menu
 from math import sqrt
