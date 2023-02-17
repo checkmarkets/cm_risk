@@ -16,7 +16,7 @@ with col1:
     st.write('')
 
 with col2:
-    st.image('/Users/cips/myfirststream/LOGO.jpg')
+    st.image('LOGO.jpg')
 
 with col3:
     st.write('')
