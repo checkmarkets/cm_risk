@@ -5,7 +5,6 @@ import streamlit as st
 
 headers = {
 	"authorization": st.secrets["eod_api"],
-	"content-type": "application/json",
 	"authorization": st.secrets["secret_key"]}
 	
 	
