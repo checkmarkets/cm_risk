@@ -8,7 +8,11 @@ from streamlit_option_menu import option_menu
 
 
 
+
 #####################    P A R A M E T E R S  ###########################
+
+eod_api = st.secrets["eod_api"]
+secret_key = st.secrets["secret_key"]
 
 st.set_page_config(page_title = "check.markets Risk Analysis", 
 	page_icon="💲"
