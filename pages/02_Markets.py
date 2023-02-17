@@ -1,9 +1,7 @@
 import streamlit as st
-from eod import EodHistoricalData
 import yfinance as yf
 import pyEX
 from time import time
-import plotly
 from datetime import datetime, timedelta
 from streamlit_option_menu import option_menu
 
@@ -17,9 +15,7 @@ c = pyEX.Client(secret_key)
 
 
 
-##############     U S E R    I N T E R F A C E     #################
-
-#### NEWS ###
+### MARKET DASHBOARD ###
 
 st.title("MARKET DASHBOARD")
 
@@ -64,11 +60,9 @@ st.write("")
 st.write("")
 
 st.title('LATEST MARKET NEWS')
-
 st.write("")
 
-
-
+### NEWS ###
 
 market_news = c.marketNewsDF()#[:20]
 #market_news[["source","headline","summary"]]
