@@ -6,11 +6,6 @@ from eod import EodHistoricalData
 
 
 
-eod_api = "5fe7bb59a1c774.17763551"
-client = EodHistoricalData(eod_api)
-
-
-
 
 ##########################################################################
 
