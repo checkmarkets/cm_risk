@@ -3,6 +3,10 @@ import numpy as np
 import streamlit as st
 from eod import EodHistoricalData
 
+st.set_page_config(page_title = "check.markets Risk Analysis", 
+	page_icon="💲"
+	#,layout="wide",
+	)
 
 eod_api = st.secrets["eod_api"]
 secret_key = st.secrets["secret_key"]
