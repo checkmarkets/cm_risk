@@ -4,15 +4,12 @@ import yfinance as yf
 import pyEX
 import streamlit as st
 from eod import EodHistoricalData
-from time import time
-import plotly
 from datetime import datetime, timedelta
 from streamlit_option_menu import option_menu
 
 
 headers = {
 	"authorization": st.secrets["eod_api"],
-	"content-type": "application/json",
 	"authorization": st.secrets["secret_key"]}
 
 
