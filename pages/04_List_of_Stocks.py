@@ -2,10 +2,10 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 from eod import EodHistoricalData
+from streamlit_option_menu import option_menu
 
 st.set_page_config(page_title = "check.markets Risk Analysis", 
 	page_icon="💲"
-	#,layout="wide",
 	)
 
 eod_api = st.secrets["eod_api"]
