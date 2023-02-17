@@ -2,17 +2,10 @@ import pandas as pd
 import numpy as np
 import yfinance as yf
 import streamlit as st
-from eod import EodHistoricalData
 from time import time
 from datetime import datetime, timedelta
 from streamlit_option_menu import option_menu
 from math import sqrt
-
-
-headers = {
-	"authorization": st.secrets["eod_api"],
-	"content-type": "application/json",
-	"authorization": st.secrets["secret_key"]}
 
 
 ### LOGO POSITIONING ####
