@@ -5,9 +5,8 @@ import streamlit as st
 from datetime import datetime, timedelta
 import datetime as dt
 
-headers = {
-	"authorization": st.secrets["eod_api"],
-	"authorization": st.secrets["secret_key"]}
+eod_api = st.secrets["eod_api"]
+secret_key = st.secrets["secret_key"]
 
 
 today = datetime.today()
