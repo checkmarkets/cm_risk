@@ -51,4 +51,4 @@ news = news[["source","summary"]]
 
 
 #with st.expander("COMPANY NEWS"):
-st.dataframe(news)
+st.table(news)
