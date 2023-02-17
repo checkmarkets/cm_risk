@@ -5,6 +5,7 @@ import streamlit as st
 from eod import EodHistoricalData
 from time import time
 from datetime import datetime, timedelta
+from openpyxl.workbook import Workbook
 from streamlit_option_menu import option_menu
 
 eod_api = st.secrets["eod_api"]
