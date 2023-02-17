@@ -14,7 +14,6 @@ secret_key = st.secrets["secret_key"]
 
 st.set_page_config(page_title = "check.markets Risk Analysis", 
 	page_icon="💲"
-	#,layout="wide",
 	)
 
 
