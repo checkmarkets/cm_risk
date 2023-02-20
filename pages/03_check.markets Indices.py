@@ -123,9 +123,9 @@ no_days_ratio = no_days_pos/no_days_neg
 
 perf_ratio = latest_price/first_price
 
-strength_ratio = std_ratio * no_days_ratio * perf_ratio
+philRatio = std_ratio * no_days_ratio * perf_ratio
 
-top_stocks = strength_ratio.sort_values(ascending=False).nlargest(10)
+top_stocks = philRatio.sort_values(ascending=False).nlargest(10)
 
 st.write("")
 st.subheader("Standings as of today (Top 10)")
@@ -156,7 +156,7 @@ with c1:
     st.write("")
 
 with c2:
-    st.metric(label = "Phil Ratio", value = round(strength_ratio[ticker_iex], 2), delta = round(strength_ratio[ticker_iex] - top_stocks.min(), 2))
+    st.metric(label = "Phil Ratio", value = round(philRatio[ticker_iex], 2), delta = round(philRatio[ticker_iex] - top_stocks.min(), 2))
 
 with c3:
     st.header("")
