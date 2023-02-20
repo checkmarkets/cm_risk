@@ -7,35 +7,25 @@ from datetime import datetime, timedelta
 from math import sqrt
 from streamlit_option_menu import option_menu
 
-st.set_page_config(page_title = "check.markets Risk Analysis", 
+st.set_page_config(page_title = "cm Risk Analysis", 
 	page_icon="💲"
 	)
 
 eod_api = st.secrets["eod_api"]
 secret_key = st.secrets["secret_key"]
 
-
 ### LOGO POSITIONING ####
-
 col1, col2, col3 = st.columns(3)
-
 with col1:
     st.write('')
-
 with col2:
     st.image('LOGO.jpg')
-
 with col3:
     st.write('')
 
-
-st.title("RISK DASHBOARD")
-
+st.title("CHECK.MARKETS RISK CHECK")
 st.subheader("Our intuitive interface provides real-time updates and clear visualizations to help you make informed decisions and stay ahead of market trends.")
-
 st.write("Let's start with the most popular Risk KPIs. We compare the actuals to the target ratio of each KPI.")
-
-
 
 with st.sidebar:
 	if "ticker" not in st.session_state:
@@ -49,26 +39,20 @@ with st.sidebar:
 
 ticker_iex = ticker.replace('.US', '')
 
-##########################################################
-
+###########################################################
 
 today = datetime.today()
-
 today = today.strftime('%Y-%m-%d')
-
 day = pd.Timestamp(today).day
 day = str(day)
-
 month = pd.Timestamp(today).month
 if month < 10:
     month = str("0" + str(month))
-
 year = int(pd.Timestamp(today).year)
 year_new = str(year - 1)
 
 start_date = str(year_new+"-"+month+"-"+day)
 start_date = datetime.strptime(start_date,'%Y-%m-%d')
-
 
 ###########################################################
 
@@ -91,9 +75,7 @@ maxDD_index = maxDD[1]
 st.write("The maximum Drawdown of " + ticker_iex + " is at " + str(round(maxDD_stock, 1))+"%" + ", whereas the S&P 500's highest drawdown in this timeframe is at " + str(round(maxDD_index, 1))+"%"  + ". ")
 st.line_chart(maxDDChart)
 
-
 days_year = len(df)
-
 
 ### RISK MEASURES ###
 
@@ -148,17 +130,13 @@ beta = round(correlation * (stock_std/index_std), 2)
 #Source: https://corporatefinanceinstitute.com/resources/capital-markets/treynor-ratio/
 treynorRatio = round((return1y - idx1yrReturn)/beta, 2) 
 
-
 #VOLATILITY
 std_dev = df.pct_change(1).describe().T["std"][0]
 volatility = round(np.sqrt(252)*std_dev*100, 1)
 
-
-
 ###########################################################################
 
-
-st.subheader("RISK METRIC DASHBOARD")
+st.subheader("cm RISK DASHBOARD")
 st.write("")
 
 sharpe, sortino, treynor = st.columns(3)
@@ -219,9 +197,7 @@ st.subheader("Yield Spread between 3M and 10Y Treasury Yield")
 st.write("")
 st.bar_chart(yield_diff)
 
-
 #CRISES ANALYSIS
-
 c01 = ["2000-03-24", "2002-10-09"]
 c02 = ["2007-10-09", "2013-03-28"]
 c03 = ["2020-02-19", "2020-08-18"]
@@ -231,8 +207,7 @@ st.write("")
 st.write("")
 
 st.header("HOW DOES " + ticker_iex + " PERFORM DURING CRASHS?")
-st.write("By analyzing how individual stocks or the market as a whole have performed during past crashes, you can gain a better understanding of their potential risk and return characteristics.")
-
+st.write("By analyzing how individual stocks or the market as a whole have performed during past crashes, you can gain a better understanding of their potential risk and return characteristics."	 
 
 st.subheader("DOTCOM BUBBLE BURST (" + c01[0] + " to " + c01[1] + ")")
 norm_c01 = crises_df[c01[0]:c01[1]]
@@ -253,9 +228,3 @@ st.subheader("INFLATION AND INTEREST RATE HIKES (" + c04[0] + " to " + c04[1] + 
 norm_c04 = crises_df[c04[0]:c04[1]]
 norm_c04 = norm_c04.div(norm_c04.iloc[0])*100-100
 st.line_chart(norm_c04)
-
-
-
-
-
-
