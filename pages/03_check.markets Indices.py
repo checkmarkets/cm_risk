@@ -151,7 +151,7 @@ c1, c2, c3 = st.columns(3)
 with c1:
     st.write("")
 with c2:
-    st.metric(label = "Phil Ratio", value = round(philRatio[ticker_iex], 2), delta = round(strength_ratio[ticker_iex] - top_stocks.min(), 2))
+    st.metric(label = "Phil Ratio", value = round(philRatio[ticker_iex], 2), delta = round(philRatio[ticker_iex] - top_stocks.min(), 2))
 with c3:
     st.header("")
 
