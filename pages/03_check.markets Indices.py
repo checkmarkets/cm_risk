@@ -126,7 +126,7 @@ def philRatio(refindx):
 	
 	return(top_stocks)
 
-philRatio(reference_index)
+top_stocks = philRatio(reference_index)
 				    
 st.write("")
 st.subheader("Standings as of today (Top 10)")
