@@ -43,7 +43,7 @@ ticker_iex = ticker.replace('.US', '')
 
 ### NEWS ###
 
-st.title(ticker_iex + "NEWS TICKER")
+st.title(ticker_iex + " NEWS TICKER")
 
 st.subheader("check.markets offers up-to-date and reliable corporate stock-related news. ")
 st.write("This is especially beneficial to find out what has moved the stock today or recently. Another great advantage: You don't need to click any links. Just read the summary of the article to be informed.")
