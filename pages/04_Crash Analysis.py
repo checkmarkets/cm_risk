@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 import datetime as dt
 from streamlit_option_menu import option_menu
 
-st.set_page_config(page_title = "check.markets Risk Analysis", 
+st.set_page_config(page_title = "cm Crash Analysis", 
 	page_icon="💲"
 	)
 
@@ -29,8 +29,6 @@ with col2:
 with col3:
     st.write('')
     
-    
-
 with st.sidebar:
 	if "ticker" not in st.session_state:
 		st.session_state["ticker"] = ""
