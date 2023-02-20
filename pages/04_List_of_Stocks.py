@@ -4,7 +4,7 @@ import streamlit as st
 from eod import EodHistoricalData
 from streamlit_option_menu import option_menu
 
-st.set_page_config(page_title = "check.markets Risk Analysis", 
+st.set_page_config(page_title = "cm List of Stocks", 
 	page_icon="💲"
 	)
 
