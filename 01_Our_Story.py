@@ -8,7 +8,7 @@ st.set_page_config(page_title = "check.markets Risk Analysis",
 	#,layout="wide",
 	)
 
-#st.image('casino_coverphoto.jpeg')
+st.image('casino_coverphoto.jpeg')
 
 
 ### CONTENT ###
