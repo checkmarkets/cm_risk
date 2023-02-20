@@ -2,12 +2,6 @@ import pandas as pd
 import streamlit as st
 
 
-headers = {
-	"authorization": st.secrets["eod_api"],
-	"authorization": st.secrets["secret_key"]}
-
-
-
 ###############     F O R M A T T I N G    #################
 
 
