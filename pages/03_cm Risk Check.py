@@ -207,7 +207,7 @@ st.write("")
 st.write("")
 
 st.header("HOW DOES " + ticker_iex + " PERFORM DURING CRASHS?")
-st.write("By analyzing how individual stocks or the market as a whole have performed during past crashes, you can gain a better understanding of their potential risk and return characteristics."	 
+st.write("By analyzing how individual stocks or the market as a whole have performed during past crashes, you can gain a better understanding of their potential risk and return characteristics.")
 
 st.subheader("DOTCOM BUBBLE BURST (" + c01[0] + " to " + c01[1] + ")")
 norm_c01 = crises_df[c01[0]:c01[1]]
