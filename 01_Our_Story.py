@@ -31,10 +31,3 @@ with st.sidebar:
 		st.write("You are analyzing: ", ticker)
     	
 ticker_iex = ticker.replace('.US', '')
-
-st.header("What you can learn from this page")
-ri, crash, indx = st.columns(3)
-ri.write("Nothing is more key to an investor than knowing the risk of his investments. Freely quoting Buffett or Graham, it takes a lot of insight to decide for a good investment.")
-crash.write("What definitely needs to be checked is how the stock performed during market crashes to know how much we could have lost in the past.")
-indx.write("To optimize performance despite crashes, we create trading algorithms for long-term investors that provide exceptional risk/reward ratios.")
-
