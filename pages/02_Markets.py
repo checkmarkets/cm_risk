@@ -4,6 +4,7 @@ import pyEX
 from time import time
 from datetime import datetime, timedelta
 from streamlit_option_menu import option_menu
+from st_aggrid import AgGrid
 
 st.set_page_config(page_title = "check.markets Risk Analysis", 
 	page_icon="💲"
@@ -69,4 +70,4 @@ market_news = c.marketNewsDF()#[:20]
 market_news = market_news[["source","summary"]]
 
 
-st.table(market_news)
+AgGrid(market_news)
