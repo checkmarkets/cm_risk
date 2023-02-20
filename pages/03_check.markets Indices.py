@@ -88,45 +88,42 @@ if quarter == "4":
 
 ################## USER INTERFACE ######################
 
-reference_index = "NDX.INDX"
+reference_index = "GSPC.INDX"
 
 
 ################## P H I L   R A T I O ##################
 
 # philRatio (on 1y basis)
-def philRatio(refindx):
-	list_of_index_components = pd.read_json("https://eodhistoricaldata.com/api/fundamentals/" + refindx + "?api_token=" + eod_api + "&filter=Components&fmt=json").T
-	list_of_tickers = list(list_of_index_components.Code)
-	list_of_tickers.append(ticker_iex)
-	list_of_tickers = list(set(list_of_tickers))
+list_of_index_components = pd.read_json("https://eodhistoricaldata.com/api/fundamentals/" + reference_index + "?api_token=" + eod_api + "&filter=Components&fmt=json").T
+list_of_tickers = list(list_of_index_components.Code)
+list_of_tickers.append(ticker_iex)
+list_of_tickers = list(set(list_of_tickers))
 
-	df = yf.download(list_of_tickers, start = beginn, interval = "1d")["Adj Close"].dropna(thresh = 5, axis = 1)
+df = yf.download(list_of_tickers, start = beginn, interval = "1d")["Adj Close"].dropna(thresh = 5, axis = 1)
 
-	norm_prices = df.div(df.iloc[0])*100
-	dly_chg = norm_prices.pct_change(1)
+norm_prices = df.div(df.iloc[0])*100
+dly_chg = norm_prices.pct_change(1)
 	
-	#Perf
-	first_price = norm_prices.iloc[0]
-	latest_price = norm_prices.iloc[-1]
-	perf_ratio = latest_price/first_price
+#Perf
+first_price = norm_prices.iloc[0]
+latest_price = norm_prices.iloc[-1]
+perf_ratio = latest_price/first_price
 	
-	#Std
-	std_pos = dly_chg.where(dly_chg > 0).std()
-	std_neg = dly_chg.where(dly_chg < 0).std()
-	std_ratio = dly_chg.where(dly_chg > 0).std()/dly_chg.where(dly_chg < 0).std()
-	std_ratio = std_ratio.where(std_ratio.between(0.05, 10))
+#Std
+std_pos = dly_chg.where(dly_chg > 0).std()
+std_neg = dly_chg.where(dly_chg < 0).std()
+std_ratio = dly_chg.where(dly_chg > 0).std()/dly_chg.where(dly_chg < 0).std()
+std_ratio = std_ratio.where(std_ratio.between(0.05, 10))
 	
-	#No days
-	no_days_neg = dly_chg.where(dly_chg < 0).count()
-	no_days_pos = dly_chg.where(dly_chg > 0).count()
-	no_days_ratio = no_days_pos/no_days_neg
+#No days
+no_days_neg = dly_chg.where(dly_chg < 0).count()
+no_days_pos = dly_chg.where(dly_chg > 0).count()
+no_days_ratio = no_days_pos/no_days_neg
 
-	philRatio = std_ratio * no_days_ratio * perf_ratio
-	top_stocks = philRatio.sort_values(ascending=False).nlargest(10)
-	
-	return(top_stocks)
+philRatio = std_ratio * no_days_ratio * perf_ratio
+top_stocks = philRatio.sort_values(ascending=False).nlargest(10)
 
-top_stocks = philRatio(reference_index)
+##########
 				    
 st.write("")
 st.subheader("Standings as of today (Top 10)")
