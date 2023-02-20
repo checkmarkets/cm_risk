@@ -21,7 +21,7 @@ risk.write("Whether you're analyzing market trends, predicting potential risks, 
 visuals.write("With its interactive and visually appealing interface, you can quickly and easily dive into complex data sets and uncover insights that were previously hidden.") 
 ride.write("**So if you're ready to take your risk analysis to the next level, let's go.**")
 
-st.write("**Enter a Stock Ticker on the lefthand side.** If you want to know the Ticker of a specific stock (like "**AAPL.US**" for Apple or "**MSFT.US**" for Microsoft), use "List of Stocks" on the left hand side.")
+st.write("**Enter a Stock Ticker on the lefthand side.** If you want to know the Ticker of a specific stock (like '**AAPL.US**' for Apple or '**MSFT.US**' for Microsoft), use 'List of Stocks' on the left hand side.")
 
 with st.sidebar:
 	if "ticker" not in st.session_state:
