@@ -3,7 +3,7 @@ import pyEX
 import streamlit as st
 from streamlit_option_menu import option_menu
 
-st.set_page_config(page_title = "check.markets Risk Analysis", 
+st.set_page_config(page_title = "cm News", 
 	page_icon="💲"
 	)
 
@@ -26,8 +26,7 @@ with col2:
 with col3:
     st.write('')
     
-    
-
+	
 with st.sidebar:
 	if "ticker" not in st.session_state:
 		st.session_state["ticker"] = ""
@@ -44,7 +43,7 @@ ticker_iex = ticker.replace('.US', '')
 
 ### NEWS ###
 
-st.title("CORPORATE NEWS TICKER")
+st.title(ticker_iex + "NEWS TICKER")
 
 st.subheader("check.markets offers up-to-date and reliable corporate stock-related news. ")
 st.write("This is especially beneficial to find out what has moved the stock today or recently. Another great advantage: You don't need to click any links. Just read the summary of the article to be informed.")
