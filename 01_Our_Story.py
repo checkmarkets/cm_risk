@@ -12,9 +12,9 @@ st.image('casino_coverphoto.jpeg')
 
 
 ### CONTENT ###
-st.title("Do you want to know the REAL risks of your US stock investments?")
-st.subheader("Look no further than our cutting-edge risk analysis for US stocks!")
-st.write("**This app is powered by nothing more than the innovative power of Streamlit. With exclusive access to market and fundamental data, check.markets will now be your favorite go-to place for US stock analysis.**")
+st.title("DO YOU HATE RISKY INVESTMENTS THAT ARE OFFERED BY THE MEDIA OR NEWSLETTERS?")
+st.subheader("Look no further than our cutting-edge risk analysis for US stocks with check.markets!")
+st.write("**This app is powered by nothing more than the innovative power of Streamlit. With exclusive access to market and fundamental data, check.markets will now be your favorite go-to place for profound risk analysis for US stocks.**")
 
 risk, visuals, ride = st.columns(3)
 risk.write("Whether you're analyzing market trends, predicting potential risks, or simply exploring the data, this app is the ultimate tool for data-driven decision making.")
