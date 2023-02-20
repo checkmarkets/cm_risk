@@ -29,7 +29,7 @@ ride.write("**So if you're ready to take your risk analysis to the next level, a
 with st.sidebar:
 	if "ticker" not in st.session_state:
 		st.session_state["ticker"] = ""
-	ticker = st.text_input("Enter a Ticker here (try AAPL.US or MSFT.US)", st.session_state["ticker"])
+	ticker = st.text_input("Enter a Ticker here (Try **AAPL.US** or **MSFT.US**)", st.session_state["ticker"])
 	submit = st.button("Submit")
 	
 	if submit:
