@@ -5,12 +5,10 @@ from time import time
 from datetime import datetime, timedelta
 from streamlit_option_menu import option_menu
 
-st.set_page_config(page_title = "check.markets Risk Analysis", 
+st.set_page_config(page_title = "cm Markets", 
 	page_icon="💲"
 	)
 
-
-eod_api = st.secrets["eod_api"]
 secret_key = st.secrets["secret_key"]
 
 c = pyEX.Client(secret_key)
@@ -20,11 +18,6 @@ c = pyEX.Client(secret_key)
 st.title("MARKET DASHBOARD")
 
 list_of_indexes = ["^GSPC", "^NDX", "^GDAXI", "EURUSD=X", "EURCHF=X", "EURGBP=X", "GC=F", "SI=F", "CL=F", "^IRX", "^FVX", "^TNX", "^TYX"]
-
-today = datetime.today()
-twodays = today - timedelta(days = 2)
-yday = today - timedelta(days = 1)
-twodays = yday.strftime('%Y-%m-%d')
 
 data = yf.download(list_of_indexes)["Adj Close"].dropna(axis = 0)
 
