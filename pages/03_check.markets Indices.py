@@ -86,45 +86,47 @@ if quarter == "4":
     ende = year+"-12-31"
 
 
-################## USER INTERFACE ######################
-
-reference_index = "GSPC.INDX"
+################## USER INTERFACE #########################################################################################################
 
 
-################## P H I L   R A T I O ##################
 
-# philRatio (on 1y basis)
+reference_index = "NDX.INDX"
 list_of_index_components = pd.read_json("https://eodhistoricaldata.com/api/fundamentals/" + reference_index + "?api_token=" + eod_api + "&filter=Components&fmt=json").T
 list_of_tickers = list(list_of_index_components.Code)
 list_of_tickers.append(ticker_iex)
 list_of_tickers = list(set(list_of_tickers))
 
-df = yf.download(list_of_tickers, start = beginn, interval = "1d")["Adj Close"].dropna(thresh = 5, axis = 1)
+df = yf.download(list_of_tickers, start = beginn, interval = "1d")["Adj Close"]
+df = df.dropna(thresh = 5, axis = 1)
 
+
+##################     P H I L   R A T I O     ######################
+
+# philRatio (on 1y basis)
+    
 norm_prices = df.div(df.iloc[0])*100
+
 dly_chg = norm_prices.pct_change(1)
-	
-#Perf
+
 first_price = norm_prices.iloc[0]
 latest_price = norm_prices.iloc[-1]
-perf_ratio = latest_price/first_price
-	
-#Std
+
 std_pos = dly_chg.where(dly_chg > 0).std()
 std_neg = dly_chg.where(dly_chg < 0).std()
 std_ratio = dly_chg.where(dly_chg > 0).std()/dly_chg.where(dly_chg < 0).std()
-std_ratio = std_ratio.where(std_ratio.between(0.05, 10))
-	
-#No days
+std_ratio = std_ratio.where(std_ratio < 10)
+std_ratio = std_ratio.where(std_ratio > 0.05)
+
 no_days_neg = dly_chg.where(dly_chg < 0).count()
 no_days_pos = dly_chg.where(dly_chg > 0).count()
 no_days_ratio = no_days_pos/no_days_neg
 
-philRatio = std_ratio * no_days_ratio * perf_ratio
-top_stocks = philRatio.sort_values(ascending=False).nlargest(10)
+perf_ratio = latest_price/first_price
 
-##########
-				    
+strength_ratio = std_ratio * no_days_ratio * perf_ratio
+
+top_stocks = strength_ratio.sort_values(ascending=False).nlargest(10)
+
 st.write("")
 st.subheader("Standings as of today (Top 10)")
 st.write("")
@@ -144,14 +146,18 @@ std.bar_chart(std_ratio.sort_values(ascending=False).nlargest(10))
 nodays.bar_chart(no_days_ratio.sort_values(ascending=False).nlargest(10))
 perf.bar_chart(perf_ratio.sort_values(ascending=False).nlargest(10))
 
+
 st.header("How strong does " + ticker_iex + " perform?")
 st.subheader("Check out how your selected stock performs. Should you invest?")
 
 c1, c2, c3 = st.columns(3)
+
 with c1:
     st.write("")
+
 with c2:
-    st.metric(label = "Phil Ratio", value = round(philRatio[ticker_iex], 2), delta = round(philRatio[ticker_iex] - top_stocks.min(), 2))
+    st.metric(label = "Phil Ratio", value = round(strength_ratio[ticker_iex], 2), delta = round(strength_ratio[ticker_iex] - top_stocks.min(), 2))
+
 with c3:
     st.header("")
 
