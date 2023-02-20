@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from math import sqrt
 from streamlit_option_menu import option_menu
 
-st.set_page_config(page_title = "cm Risk Analysis", 
+st.set_page_config(page_title = "cm Risk Check", 
 	page_icon="💲"
 	)
 
