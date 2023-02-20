@@ -10,9 +10,8 @@ from streamlit_option_menu import option_menu
 #####################    P A R A M E T E R S  ###########################
 
 eod_api = st.secrets["eod_api"]
-secret_key = st.secrets["secret_key"]
 
-st.set_page_config(page_title = "check.markets Risk Analysis", 
+st.set_page_config(page_title = "cm Technicals", 
 	page_icon="💲"
 	)
 
@@ -109,15 +108,15 @@ with st.expander("EXPLANATION"):
 
 #### CHARTING ####
 
-st.subheader('BENCHMARK ANALYSIS (VS NASDAQ 100)')
+st.subheader('BENCHMARK ANALYSIS (VS S&P 500)')
 
-ref_index = "^NDX"
+ref_index = "^GSPC"
 
 new_ticker = ticker.replace(".US", "")
 new_ticker_list = [new_ticker, ref_index]
 
 new_df = yf.download(new_ticker_list)["Adj Close"].dropna()
-new_df.columns = [new_ticker, "Nasdaq 100"]
+new_df.columns = [new_ticker, "S&P 500"]
 
 new_norm_df = new_df.div(new_df.iloc[0]) * 100
 new_norm_1y = new_df.div(new_df.iloc[-days_year]) * 100
