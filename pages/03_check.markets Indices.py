@@ -88,7 +88,7 @@ if quarter == "4":
 
 ################## USER INTERFACE ######################
 
-reference_index = "GSPC.INDX"
+reference_index = "NDX.INDX"
 
 
 ################## P H I L   R A T I O ##################
