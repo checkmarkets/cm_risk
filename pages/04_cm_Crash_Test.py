@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 import datetime as dt
 from streamlit_option_menu import option_menu
 
-st.set_page_config(page_title = "cm Crash Analysis", 
+st.set_page_config(page_title = "cm Crash Test", 
 	page_icon="💲"
 	)
 
@@ -53,7 +53,6 @@ c01 = ["2000-03-24", "2002-10-09"]
 c02 = ["2007-10-09", "2013-03-28"]
 c03 = ["2020-02-19", "2020-08-18"]
 c04 = ["2022-01-03", today]
-
 
 df = yf.download(analyzed_instruments, period="max")["Adj Close"]
 
