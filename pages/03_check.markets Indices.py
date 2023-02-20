@@ -114,7 +114,7 @@ def philRatio(refindx):
 	std_pos = dly_chg.where(dly_chg > 0).std()
 	std_neg = dly_chg.where(dly_chg < 0).std()
 	std_ratio = dly_chg.where(dly_chg > 0).std()/dly_chg.where(dly_chg < 0).std()
-	std_ratio = std_ratio.where(std_ratio.between(0.05, 10)
+	std_ratio = std_ratio.where(std_ratio.between(0.05, 10))
 	
 	#No days
 	no_days_neg = dly_chg.where(dly_chg < 0).count()
