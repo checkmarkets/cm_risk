@@ -32,8 +32,7 @@ ref_index_2 = "GSPC.INDX"
 list_of_stocks = pd.DataFrame(list(pd.read_json("https://eodhistoricaldata.com/api/fundamentals/" + reference_index + "?api_token=" + eod_api + "&fmt=json")["Components"].dropna()))
 sec_list = pd.DataFrame(list(pd.read_json("https://eodhistoricaldata.com/api/fundamentals/" + ref_index_2 + "?api_token=" + eod_api + "&fmt=json")["Components"].dropna()))
 list_of_stocks = pd.concat([list_of_stocks, sec_list])
-st.table(list_of_stocks.Code.loc[ticker_iex])
-#companyName = list_of_stocks.loc[ticker].Name 
+companyName = list_of_stocks.Name.where(list_of_stocks.Code == ticker_iex).iloc[0]
 
 logo = pd.read_json("https://eodhistoricaldata.com/img/logos/US/"+ticker+".png")
 st.image(logo)
