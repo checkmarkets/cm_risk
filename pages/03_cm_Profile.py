@@ -26,6 +26,9 @@ ticker_iex = ticker.replace('.US', '')
 eod_api = st.secrets["eod_api"]
 secret_key = st.secrets["secret_key"]
 
+reference_index = "RUT.INDX"
+ref_index_2 = "GSPC.INDX"
+
 list_of_stocks = pd.DataFrame(list(pd.read_json("https://eodhistoricaldata.com/api/fundamentals/" + reference_index + "?api_token=" + eod_api + "&fmt=json")["Components"].dropna()))
 sec_list = pd.DataFrame(list(pd.read_json("https://eodhistoricaldata.com/api/fundamentals/" + ref_index_2 + "?api_token=" + eod_api + "&fmt=json")["Components"].dropna()))
 list_of_stocks = pd.concat([list_of_stocks, sec_list])
