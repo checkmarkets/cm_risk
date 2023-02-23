@@ -22,7 +22,7 @@ companyName = list_of_stocks.loc[ticker].Name
 logo = pd.read_json("https://eodhistoricaldata.com/img/logos/US/"+ticker+".png")
 st.image(logo)
 
-rt_price = pd.read_json(https://eodhistoricaldata.com/api/real-time/AAPL.US?api_token="+eod_api"+"&fmt=json&filter=close")
+rt_price = pd.read_json("https://eodhistoricaldata.com/api/real-time/AAPL.US?api_token="+eod_api+"&fmt=json&filter=close")
 
 highlights = pd.read_json("https://eodhistoricaldata.com/api/fundamentals/"+ ticker +"?api_token=" + eod_api + "&filter=Valuation,Highlights").T
 marketCap = highlights.MarketCapitalization[1]
