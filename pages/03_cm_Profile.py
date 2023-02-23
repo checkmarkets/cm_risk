@@ -11,6 +11,18 @@ st.set_page_config(page_title = "cm Profile",
 	page_icon="💲"
 	)
 
+with st.sidebar:
+	if "ticker" not in st.session_state:
+		st.session_state["ticker"] = ""
+	ticker = st.text_input("Enter a Ticker here", st.session_state["ticker"])
+	submit = st.button("Submit")
+	
+	if submit:
+		st.session_state["ticker"] = ticker
+		st.write("You are analyzing: ", ticker)
+
+ticker_iex = ticker.replace('.US', '')
+
 eod_api = st.secrets["eod_api"]
 secret_key = st.secrets["secret_key"]
 
