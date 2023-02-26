@@ -55,7 +55,7 @@ cf = pd.read_excel("cf.xlsx", usecols = ["date","totalCashFromOperatingActivitie
 
 #############################################################################
 
-st.title("Financials At A Glance")
+st.title("FINANCIALS AT A GLANCE")
 st.write("Check out the most important financial metrics to understand how sustainable the investment in your stock is.")
 
 ### GROWTH ###
