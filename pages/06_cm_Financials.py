@@ -127,12 +127,13 @@ currValuation_dict = {"Price/Sales": str(currValuation.pS.iloc[0]),
 
 ### QUALITY ###
 
-quality = pd.DataFrame(index = cf.index, columns = ["dE", "dOcf","dFcf","wc","gwRatio"])
+quality = pd.DataFrame(index = cf.index, columns = ["dE", "dOcf","dFcf", "netDebt","wc","gwRatio"])
 
 totalDebt = (bs.cashAndEquivalents + bs.netDebt)
 quality.dE = round(totalDebt/bs.totalStockholderEquity, 1)
 quality.dOcf = round(totalDebt/cf.totalCashFromOperatingActivities, 1)
 quality.dFcf = round(totalDebt/cf.freeCashFlow, 1)
+quality.netDebt = bs.netDebt < 0
 quality.wc = round(bs.totalCurrentAssets/bs.totalCurrentLiabilities, 1)
 quality.gwRatio = round(bs.goodWill/bs.totalAssets*100, 1)
 
@@ -140,6 +141,7 @@ currQuality = pd.DataFrame(quality.iloc[0]).T
 currQuality_dict = {"Debt/Equity": str(currQuality.dE.iloc[0]),
 					"Debt/OCF": str(currQuality.dOcf.iloc[0]),
 					"Debt/FCF": str(currQuality.dFcf.iloc[0]),
+					"Net Debt": currQuality.netDebt[0],
 					"Current Ratio/WC Multiple": str(currQuality.wc.iloc[0]),
 					"Goodwill Ratio": str(currQuality.gwRatio.iloc[0]) + " %"}
 
@@ -156,68 +158,95 @@ roi.chgShares5y = round(chgShares[5],1)
 currROI = pd.DataFrame(roi.iloc[0]).T
 
 
-st.header("GROWTH")
-with st.expander("Description"):
+tab_titles = [
+	"GROWTH",
+	"PROFITABILITY",
+	"VALUATION",
+	"QUALITY",
+	"ROI FOR INVESTORS"]
+	
+	
+tabs = st.tabs(tab_titles)
+
+with tabs[0]:
+	st.title("GROWTH")
+	rev5y, ni5y, div5y = st.columns(3)
+	rev5y.metric(label="Revenue in USDm (5y Chg in %)", value= "{:,.0f}".format(round(inc.totalRevenue.iloc[0]/1000000,0)), delta= str(growth.rev_gth.iloc[0])+"%")
+	ni5y.metric(label= "Net Income in USDm (5y Chg in %)", value = "{:,.0f}".format(round(inc.netIncome.iloc[0]/1000000,0)), delta = str(growth.ni_gth.iloc[0])+"%")
+	div5y.metric(label= "Dividends in USDm (5y Chg in %)", value = "{:,.0f}".format(round(abs(cf.dividendsPaid.iloc[0]/1000000),0)), delta = str(growth.div_gth.iloc[0])+"%")
+	#st.line_chart(inc[["totalRevenue","netIncome"]].pct_change(-1))
+
+	st.subheader("Why Growth makes a difference")
 	st.write("Companies need to grow in order to remain competitive and maintain their market position. As companies grow, they can achieve **economies of scale**, **reduce costs**, and **increase profitability**. Additionally, growth can lead to **new opportunities for investment**, **innovation**, and **expansion into new markets** - and these aspects are most important for us as investors to find the **next BIG growth story**.")
 
 
-rev5y, ni5y, div5y = st.columns(3)
-rev5y.metric(label="Revenue in USDm (5y Chg in %)", value= round(inc.totalRevenue.iloc[0]/1000000,0), delta= str(growth.rev_gth.iloc[0])+"%")
-ni5y.metric(label= "Net Income in USDm (5y Chg in %)", value = round(inc.netIncome.iloc[0]/1000000,0), delta = str(growth.ni_gth.iloc[0])+"%")
-div5y.metric(label= "Dividends in USDm (5y Chg in %)", value = round(abs(cf.dividendsPaid.iloc[0]/1000000),0), delta = str(growth.div_gth.iloc[0])+"%")
-#st.line_chart(inc[["totalRevenue","netIncome"]].pct_change(-1))
+with tabs[1]:
+	st.title("PROFITABILITY")
+	
+	currgpm, currebitm, currnim = st.columns(3)
+	currgpm.metric(label="Gross Profit margin (vs 10y Avg)", value= str(currMargins.iloc[0,0])+"%", delta= str(round(currMargins.iloc[0,0] - currMargins.iloc[0,1], 1))+"%p")
+	currebitm.metric(label= "EBIT margin (vs 10y Avg)", value = str(currMargins.iloc[2,0])+"%", delta = str(round(currMargins.iloc[2,0] - currMargins.iloc[2,1], 1))+"%p")
+	currnim.metric(label= "Net Income margin (vs 10y Avg)", value = str(currMargins.iloc[3,0])+"%", delta = str(round(currMargins.iloc[3,0] - currMargins.iloc[3,1], 1))+"%p")	
+	
+	currocfm, currfcfm, currroe = st.columns(3)
+	currocfm.metric(label="OCF margin (vs 10y Avg)", value= str(currMargins.iloc[4,0])+"%", delta= str(round(currMargins.iloc[4,0] - currMargins.iloc[4,1], 1))+"%p")
+	currfcfm.metric(label= "FCF margin (vs 10y Avg)", value = str(currMargins.iloc[5,0])+"%", delta = str(round(currMargins.iloc[5,0] - currMargins.iloc[5,1], 1))+"%p")
+	currroe.metric(label= "ROE (vs 10y Avg)", value = str(currMargins.iloc[6,0])+"%", delta = str(round(currMargins.iloc[6,0] - currMargins.iloc[6,1], 1))+"%p")
+	#st.line_chart(margins[["Gross Profit margin in %", "OCF margin in %","Net Income margin in %","FCF margin in %"]].pct_change(-1)*100)
 
-st.header("PROFITABILITY")
-with st.expander("Description"):
+	st.subheader("Why high profits mean high stock returns")
 	st.write("Profitable companies provide higher returns to shareholder. With piles of cash, financial debt is easily repaid and dividends and stock buybacks can follow a sustainable growth plan. With the help of these cash resources, companies can invest in research and highly attractive companies. Economic downturn and downswings can be mastered easily. New investors are attracted and the value of the company increases. ")
-currgpm, currebitm, currnim = st.columns(3)
-currgpm.metric(label="Gross Profit margin (vs 10y Avg)", value= str(currMargins.iloc[0,0])+"%", delta= str(round(currMargins.iloc[0,0] - currMargins.iloc[0,1], 1))+"%p")
-currebitm.metric(label= "EBIT margin (vs 10y Avg)", value = str(currMargins.iloc[2,0])+"%", delta = str(round(currMargins.iloc[2,0] - currMargins.iloc[2,1], 1))+"%p")
-currnim.metric(label= "Net Income margin (vs 10y Avg)", value = str(currMargins.iloc[3,0])+"%", delta = str(round(currMargins.iloc[3,0] - currMargins.iloc[3,1], 1))+"%p")	
-currocfm, currfcfm, currroe = st.columns(3)
-currocfm.metric(label="OCF margin (vs 10y Avg)", value= str(currMargins.iloc[4,0])+"%", delta= str(round(currMargins.iloc[4,0] - currMargins.iloc[4,1], 1))+"%p")
-currfcfm.metric(label= "FCF margin (vs 10y Avg)", value = str(currMargins.iloc[5,0])+"%", delta = str(round(currMargins.iloc[5,0] - currMargins.iloc[5,1], 1))+"%p")
-currroe.metric(label= "ROE (vs 10y Avg)", value = str(currMargins.iloc[6,0])+"%", delta = str(round(currMargins.iloc[6,0] - currMargins.iloc[6,1], 1))+"%p")
-#st.line_chart(margins[["Gross Profit margin in %", "OCF margin in %","Net Income margin in %","FCF margin in %"]].pct_change(-1)*100)
 
-st.header("VALUATION")
-with st.expander("Description"):
+		
+with tabs[2]:
+	st.title("VALUATION")
+	
+	prices, priceocf, pricefcf = st.columns(3)
+	prices.metric(label = "Price/Sales", value = round(currValuation.pS.iloc[0],1), delta = round(currValuation.pS.iloc[0]-3, 1), delta_color = "inverse")
+	priceocf.metric(label = "Price/OCF", value = round(currValuation.pOcf.iloc[0],1), delta = round(currValuation.pOcf.iloc[0]-10, 1), delta_color = "inverse")
+	pricefcf.metric(label = "Price/FCF", value = round(currValuation.pFcf.iloc[0],1), delta = round(currValuation.pFcf.iloc[0]-10, 1), delta_color = "inverse")
+	
+	pgp, pbv, pe = st.columns(3)
+	pgp.metric(label = "Price/Gross Profit", value = round(currValuation.pGp.iloc[0],1), delta = round(currValuation.pGp.iloc[0]-8, 1), delta_color = "inverse")
+	pbv.metric(label = "Price/Book Value", value = round(currValuation.pB.iloc[0],1), delta = round(currValuation.pB.iloc[0]-3, 1), delta_color = "inverse")
+	pe.metric(label = "Price/Earnings", value = round(currValuation.pE.iloc[0],1), delta = round(currValuation.pE.iloc[0]-15, 1), delta_color = "inverse")
+	
+	evs, evebitda, evocf = st.columns(3)
+	evs.metric(label = "EV/Sales", value = round(currValuation.evS.iloc[0],1), delta = round(currValuation.evS.iloc[0]-3, 1), delta_color = "inverse")
+	evebitda.metric(label = "EV/EBITDA", value = round(currValuation.evEbitda.iloc[0],1), delta = round(currValuation.evEbitda.iloc[0]-8, 1), delta_color = "inverse")	
+	evocf.metric(label = "EV/OCF", value = round(currValuation.evOcf.iloc[0], 1), delta = round(currValuation.evOcf.iloc[0]-10, 1), delta_color = "inverse")
+
+	st.subheader("Why Valuation is key to avoid risk")
 	st.write("With the help of suitable valuation KPIs, investors identify stocks that are undervalued by the market, and therefore have potential for long-term growth. Value investing can also help to reduce the risk of investing in overpriced stocks, which may be more susceptible to market downturns. ")
 
-prices, priceocf, pricefcf = st.columns(3)
-prices.metric(label = "Price/Sales", value = round(currValuation.pS.iloc[0],1), delta = round(currValuation.pS.iloc[0]-3, 1), delta_color = "inverse")
-priceocf.metric(label = "Price/OCF", value = round(currValuation.pOcf.iloc[0],1), delta = round(currValuation.pOcf.iloc[0]-10, 1), delta_color = "inverse")
-pricefcf.metric(label = "Price/FCF", value = round(currValuation.pFcf.iloc[0],1), delta = round(currValuation.pFcf.iloc[0]-10, 1), delta_color = "inverse")
-pgp, pbv, pe = st.columns(3)
-pgp.metric(label = "Price/Gross Profit", value = round(currValuation.pGp.iloc[0],1), delta = round(currValuation.pGp.iloc[0]-8, 1), delta_color = "inverse")
-pbv.metric(label = "Price/Book Value", value = round(currValuation.pB.iloc[0],1), delta = round(currValuation.pB.iloc[0]-3, 1), delta_color = "inverse")
-pe.metric(label = "Price/Earnings", value = round(currValuation.pE.iloc[0],1), delta = round(currValuation.pE.iloc[0]-15, 1), delta_color = "inverse")
-evs, evebitda, evocf = st.columns(3)
-evs.metric(label = "EV/Sales", value = round(currValuation.evS.iloc[0],1), delta = round(currValuation.evS.iloc[0]-3, 1), delta_color = "inverse")
-evebitda.metric(label = "EV/EBITDA", value = round(currValuation.evEbitda.iloc[0],1), delta = round(currValuation.evEbitda.iloc[0]-8, 1), delta_color = "inverse")	
-evocf.metric(label = "EV/OCF", value = round(currValuation.evOcf.iloc[0], 1), delta = round(currValuation.evOcf.iloc[0]-10, 1), delta_color = "inverse")
 
+with tabs[3]:
+	st.title("QUALITY")
+	
+	de, docf, dfcf = st.columns(3)
+	de.metric(label = "Debt/Equity Multiple", value = round(currQuality.dE.iloc[0], 1), delta = round(currQuality.dE.iloc[0]-1,1), delta_color = "inverse")
+	docf.metric(label = "Debt/OCF Multiple", value = round(currQuality.dOcf.iloc[0], 1), delta = round(currQuality.dOcf.iloc[0]-1,1), delta_color = "inverse")
+	dfcf.metric(label = "Debt/FCF Multiple", value = round(currQuality.dFcf.iloc[0], 1), delta = round(currQuality.dFcf.iloc[0]-2,1), delta_color = "inverse")
 
-st.header("QUALITY")
+	nd, wcmult, gwratio = st.columns(3)
+	nd.metric(label = "Net Cash", value = currQuality.netDebt[0])
+	wcmult.metric(label = "Current Ratio (WC Multiple)", value = round(currQuality.wc.iloc[0], 1), delta = round(currQuality.wc.iloc[0] - 2, 1))
+	gwratio.metric(label = "Goodwill Ratio", value = str(round(currQuality.gwRatio.iloc[0], 1))+"%", delta = str(round(currQuality.gwRatio.iloc[0]-10, 1))+"%", delta_color="inverse")	
 
-with st.expander("Description"):
+	st.subheader("Why Quality metrics make your investments sustainable")
 	st.write("Companies that are profitable and have a strong financial position may have greater potential for growth and expansion. : Companies with low debt levels are generally considered to be less risky investments because they are less vulnerable to market downturns and economic fluctuations. Quality stocks can be especially attractive in times of market volatility.")
-de, docf, dfcf = st.columns(3)
-de.metric(label = "Debt/Equity Multiple", value = round(currQuality.dE.iloc[0], 1), delta = round(currQuality.dE.iloc[0]-1,1), delta_color = "inverse")
-docf.metric(label = "Debt/OCF Multiple", value = round(currQuality.dOcf.iloc[0], 1), delta = round(currQuality.dOcf.iloc[0]-1,1), delta_color = "inverse")
-dfcf.metric(label = "Debt/FCF Multiple", value = round(currQuality.dFcf.iloc[0], 1), delta = round(currQuality.dFcf.iloc[0]-2,1), delta_color = "inverse")
-wcmult, gwratio = st.columns(2)
-wcmult.metric(label = "Current Ratio (WC Multiple)", value = round(currQuality.wc.iloc[0], 1), delta = round(currQuality.wc.iloc[0] - 2, 1))
-gwratio.metric(label = "Goodwill Ratio", value = str(round(currQuality.gwRatio.iloc[0], 1))+"%", delta = str(round(currQuality.gwRatio.iloc[0]-10, 1))+"%", delta_color="inverse")	
 
 
-st.header("ROI FOR INVESTORS")
-with st.expander("Description"):
+with tabs[4]:
+	st.title("ROI FOR INVESTORS")
+	
+	divyd, adjdivyd = st.columns(2)
+	divyd.metric(label = "Dividend Yield (last FY)", value = str(round(currROI.divYd.iloc[0], 1))+"%", delta = str(round(currROI.divYd.iloc[0]-0, 1))+"%")
+	adjdivyd.metric(label = "Curr Adj Div Yield (last FY)", value = str(round(currROI.adjdivYd.iloc[0], 1))+"%", delta = str(round(currROI.adjdivYd.iloc[0] - 5, 1))+str("%"))
+	
+	fcfyd, chgshares = st.columns(2)
+	fcfyd.metric(label = "FCF Yield (last FY)", value = str(round(currROI.fcfYd.iloc[0], 1))+"%", delta = str(round(currROI.fcfYd.iloc[0]-10, 1))+"%")
+	chgshares.metric(label = "Change in No of Shares (in 5y)", value = str(round(currROI.chgShares5y.iloc[0], 1))+"%", delta = str(round(currROI.chgShares5y.iloc[0]+10, 1))+"%", delta_color="inverse")
+
+	st.subheader("Why these numbers should interest you most")
 	st.write("Dividend-paying stocks can provide a steady stream of income for investors, which can be especially attractive in low-interest-rate environments. This income can be reinvested in the company's stock or used for other investment opportunities. Companies that buy back their own stock may boost the stock price, potentially increasing investors' capital gains. Additionally, companies that pay dividends may attract more investors and increase demand for their shares, which can drive up the stock price. They may be seen as shareholder-friendly, which can improve the company's reputation and attract more investors.")
-
-divyd, adjdivyd = st.columns(2)
-divyd.metric(label = "Dividend Yield (last FY)", value = str(round(currROI.divYd.iloc[0], 1))+"%", delta = str(round(currROI.divYd.iloc[0]-0, 1))+"%")
-adjdivyd.metric(label = "Curr Adj Div Yield (last FY)", value = str(round(currROI.adjdivYd.iloc[0], 1))+"%", delta = str(round(currROI.adjdivYd.iloc[0] - 5, 1))+str("%"))
-fcfyd, chgshares = st.columns(2)
-fcfyd.metric(label = "FCF Yield (last FY)", value = str(round(currROI.fcfYd.iloc[0], 1))+"%", delta = str(round(currROI.fcfYd.iloc[0]-10, 1))+"%")
-chgshares.metric(label = "Change in No of Shares (in 5y)", value = str(round(currROI.chgShares5y.iloc[0], 1))+"%", delta = str(round(currROI.chgShares5y.iloc[0]+10, 1))+"%", delta_color="inverse")
