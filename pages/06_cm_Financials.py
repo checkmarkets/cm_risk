@@ -178,8 +178,8 @@ with tabs[0]:
 	div5y.metric(label= "Dividends in USDm (5y Chg in %)", value = "{:,.0f}".format(round(abs(cf.dividendsPaid.iloc[0]/1000000),0)), delta = str(growth.div_gth.iloc[0])+"%")
 	#st.line_chart(inc[["totalRevenue","netIncome"]].pct_change(-1))
 
-	st.subheader("Why Growth makes a difference")
-	st.write("Companies need to grow in order to remain competitive and maintain their market position. As companies grow, they can achieve **economies of scale**, **reduce costs**, and **increase profitability**. Additionally, growth can lead to **new opportunities for investment**, **innovation**, and **expansion into new markets** - and these aspects are most important for us as investors to find the **next BIG growth story**.")
+	with st.expander("WHY GROWTH MAKES A DIFFERENCE"):
+		st.write("Companies need to grow in order to remain competitive and maintain their market position. As companies grow, they can achieve **economies of scale**, **reduce costs**, and **increase profitability**. Additionally, growth can lead to **new opportunities for investment**, **innovation**, and **expansion into new markets** - and these aspects are most important for us as investors to find the **next BIG growth story**.")
 
 
 with tabs[1]:
@@ -196,8 +196,8 @@ with tabs[1]:
 	currroe.metric(label= "ROE (vs 10y Avg)", value = str(currMargins.iloc[6,0])+"%", delta = str(round(currMargins.iloc[6,0] - currMargins.iloc[6,1], 1))+"%p")
 	#st.line_chart(margins[["Gross Profit margin in %", "OCF margin in %","Net Income margin in %","FCF margin in %"]].pct_change(-1)*100)
 
-	st.subheader("Why high profits mean high stock returns")
-	st.write("Profitable companies provide higher returns to shareholder. With piles of cash, financial debt is easily repaid and dividends and stock buybacks can follow a sustainable growth plan. With the help of these cash resources, companies can invest in research and highly attractive companies. Economic downturn and downswings can be mastered easily. New investors are attracted and the value of the company increases. ")
+	with st.expander("WHY HIGH PROFITS MEAN HIGH STOCK RETURNS"):
+		st.write("Profitable companies provide higher returns to shareholder. With piles of cash, financial debt is easily repaid and dividends and stock buybacks can follow a sustainable growth plan. With the help of these cash resources, companies can invest in research and highly attractive companies. Economic downturn and downswings can be mastered easily. New investors are attracted and the value of the company increases. ")
 
 		
 with tabs[2]:
@@ -218,8 +218,8 @@ with tabs[2]:
 	evebitda.metric(label = "EV/EBITDA", value = round(currValuation.evEbitda.iloc[0],1), delta = round(currValuation.evEbitda.iloc[0]-8, 1), delta_color = "inverse")	
 	evocf.metric(label = "EV/OCF", value = round(currValuation.evOcf.iloc[0], 1), delta = round(currValuation.evOcf.iloc[0]-10, 1), delta_color = "inverse")
 
-	st.subheader("Why Valuation is key to avoid risk")
-	st.write("With the help of suitable valuation KPIs, investors identify stocks that are undervalued by the market, and therefore have potential for long-term growth. Value investing can also help to reduce the risk of investing in overpriced stocks, which may be more susceptible to market downturns. ")
+	with st.expander("WHY VALUATION IS KEY TO AVOID RISK"):
+		st.write("With the help of suitable valuation KPIs, investors identify stocks that are undervalued by the market, and therefore have potential for long-term growth. Value investing can also help to reduce the risk of investing in overpriced stocks, which may be more susceptible to market downturns. ")
 
 
 with tabs[3]:
@@ -235,8 +235,8 @@ with tabs[3]:
 	wcmult.metric(label = "Current Ratio (WC Multiple)", value = round(currQuality.wc.iloc[0], 1), delta = round(currQuality.wc.iloc[0] - 2, 1))
 	gwratio.metric(label = "Goodwill Ratio", value = str(round(currQuality.gwRatio.iloc[0], 1))+"%", delta = str(round(currQuality.gwRatio.iloc[0]-10, 1))+"%", delta_color="inverse")	
 
-	st.subheader("Why Quality metrics make your investments sustainable")
-	st.write("Companies that are profitable and have a strong financial position may have greater potential for growth and expansion. : Companies with low debt levels are generally considered to be less risky investments because they are less vulnerable to market downturns and economic fluctuations. Quality stocks can be especially attractive in times of market volatility.")
+	with st.expander("WHY QUALITY METRICS MAKE YOUR INVESTMENTS SUSTAINABLE"):
+		st.write("Companies that are profitable and have a strong financial position may have greater potential for growth and expansion. : Companies with low debt levels are generally considered to be less risky investments because they are less vulnerable to market downturns and economic fluctuations. Quality stocks can be especially attractive in times of market volatility.")
 
 
 with tabs[4]:
@@ -250,5 +250,5 @@ with tabs[4]:
 	fcfyd.metric(label = "FCF Yield (last FY)", value = str(round(currROI.fcfYd.iloc[0], 1))+"%", delta = str(round(currROI.fcfYd.iloc[0]-10, 1))+"%")
 	chgshares.metric(label = "Change in No of Shares (in 5y)", value = str(round(currROI.chgShares5y.iloc[0], 1))+"%", delta = str(round(currROI.chgShares5y.iloc[0]+10, 1))+"%", delta_color="inverse")
 
-	st.subheader("Why these numbers should interest you most")
-	st.write("Dividend-paying stocks can provide a steady stream of income for investors, which can be especially attractive in low-interest-rate environments. This income can be reinvested in the company's stock or used for other investment opportunities. Companies that buy back their own stock may boost the stock price, potentially increasing investors' capital gains. Additionally, companies that pay dividends may attract more investors and increase demand for their shares, which can drive up the stock price. They may be seen as shareholder-friendly, which can improve the company's reputation and attract more investors.")
+	with st.expander("WHY RETURN ON INVESTMENT SHOULD INTEREST YOU MOST"):
+		st.write("Dividend-paying stocks can provide a steady stream of income for investors, which can be especially attractive in low-interest-rate environments. This income can be reinvested in the company's stock or used for other investment opportunities. Companies that buy back their own stock may boost the stock price, potentially increasing investors' capital gains. Additionally, companies that pay dividends may attract more investors and increase demand for their shares, which can drive up the stock price. They may be seen as shareholder-friendly, which can improve the company's reputation and attract more investors.")
