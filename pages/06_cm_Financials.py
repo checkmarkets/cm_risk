@@ -171,7 +171,7 @@ tab_titles = [
 tabs = st.tabs(tab_titles)
 
 with tabs[0]:
-	st.title("GROWTH")
+	st.header("GROWTH")
 	rev5y, ni5y, div5y = st.columns(3)
 	rev5y.metric(label="Revenue in USDm (5y Chg in %)", value= "{:,.0f}".format(round(inc.totalRevenue.iloc[0]/1000000,0)), delta= str(growth.rev_gth.iloc[0])+"%")
 	ni5y.metric(label= "Net Income in USDm (5y Chg in %)", value = "{:,.0f}".format(round(inc.netIncome.iloc[0]/1000000,0)), delta = str(growth.ni_gth.iloc[0])+"%")
@@ -183,7 +183,7 @@ with tabs[0]:
 
 
 with tabs[1]:
-	st.title("PROFITABILITY")
+	st.header("PROFITABILITY")
 	
 	currgpm, currebitm, currnim = st.columns(3)
 	currgpm.metric(label="Gross Profit margin (vs 10y Avg)", value= str(currMargins.iloc[0,0])+"%", delta= str(round(currMargins.iloc[0,0] - currMargins.iloc[0,1], 1))+"%p")
@@ -201,7 +201,7 @@ with tabs[1]:
 
 		
 with tabs[2]:
-	st.title("VALUATION")
+	st.header("VALUATION")
 	
 	prices, priceocf, pricefcf = st.columns(3)
 	prices.metric(label = "Price/Sales", value = round(currValuation.pS.iloc[0],1), delta = round(currValuation.pS.iloc[0]-3, 1), delta_color = "inverse")
@@ -223,7 +223,7 @@ with tabs[2]:
 
 
 with tabs[3]:
-	st.title("QUALITY")
+	st.header("QUALITY")
 	
 	de, docf, dfcf = st.columns(3)
 	de.metric(label = "Debt/Equity Multiple", value = round(currQuality.dE.iloc[0], 1), delta = round(currQuality.dE.iloc[0]-1,1), delta_color = "inverse")
@@ -240,7 +240,7 @@ with tabs[3]:
 
 
 with tabs[4]:
-	st.title("ROI FOR INVESTORS")
+	st.header("ROI FOR INVESTORS")
 	
 	divyd, adjdivyd = st.columns(2)
 	divyd.metric(label = "Dividend Yield (last FY)", value = str(round(currROI.divYd.iloc[0], 1))+"%", delta = str(round(currROI.divYd.iloc[0]-0, 1))+"%")
