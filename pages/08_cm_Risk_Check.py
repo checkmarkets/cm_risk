@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import yfinance as yf
 import streamlit as st
-from time import time
 from datetime import datetime, timedelta
 from math import sqrt
 from streamlit_option_menu import option_menu
@@ -175,8 +174,7 @@ with tab2:
 with tab3:
 	st.subheader("(INVERTED) YIELD CURVE")
 	st.write("")
-	with st.expander("EXPLANATION"):
-		st.write("An **Inverted (or Negative) Yield Curve** occurs when short-term treasury yields are higher than long-term treasury yield of the same credit risk profile. Usually, the US treasury bonds are analyzed. While investors mostly take the 2YR and the 10Y Treasury Yield as indicators, academic studies of the relationship between an inverted yield curve and recessions have tended to look at the spread between the yields on the 10YR U.S. Treasury bond and the 3M Treasury bill.")
+	st.write("An **Inverted (or Negative) Yield Curve** occurs when short-term treasury yields are higher than long-term treasury yield of the same credit risk profile. Usually, the US treasury bonds are analyzed. While investors mostly take the 2YR and the 10Y Treasury Yield as indicators, academic studies of the relationship between an inverted yield curve and recessions have tended to look at the spread between the yields on the 10YR U.S. Treasury bond and the 3M Treasury bill.")
 	list_of_bonds = ["^IRX", "^TNX"]
 	bonds = yf.download(list_of_bonds, interval="1d")["Adj Close"].dropna(axis=0)
 	short_bond = round(bonds.iloc[-1][0], 2)
