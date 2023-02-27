@@ -54,20 +54,20 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs(["NEWS POINT 1", "NEWS POINT 2", "NEWS PO
 
 with tab1:
 	st.write(news.iloc[0,1])
-	st.write("**Source: **"+news.iloc[0,0])
+	st.write("**Source:** "+news.iloc[0,0])
 	
 with tab2:
 	st.write(news.iloc[1,1])
-	st.write("**Source: **"+news.iloc[1,0])
+	st.write("**Source:** "+news.iloc[1,0])
 	
 with tab3:	
 	st.write(news.iloc[2,1])
-	st.write("**Source: **"+news.iloc[2,0])
+	st.write("**Source:** "+news.iloc[2,0])
 	
 with tab4:
 	st.write(news.iloc[3,1])
-	st.write("**Source: **"+news.iloc[3,0])
+	st.write("**Source:** "+news.iloc[3,0])
 	
 with tab5:
 	st.write(news.iloc[4,1])
-	st.write("**Source: **"+news.iloc[4,0])
+	st.write("**Source:** "+news.iloc[4,0])
