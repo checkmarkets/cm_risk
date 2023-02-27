@@ -63,10 +63,8 @@ st.write("- Bonds (10Y Treasury Yd, 30Y Treasury Yd),")
 st.write("- Commodities (Gold, Silver, Oil) and ")
 st.write("- Currencies (EUR/USD, EUR/CHF, EUR/GBP).")
 st.write("")
-st.write("")
 
-
-tab1, tab2, tab3, tab4 = st.tabs(["BONDS", "COMMODITIES", "CURRENCY RATES"])
+tab1, tab2, tab3 = st.tabs(["BONDS", "COMMODITIES", "CURRENCY RATES"])
 
 with tab1:
 	st.subheader("#1: BONDS")
