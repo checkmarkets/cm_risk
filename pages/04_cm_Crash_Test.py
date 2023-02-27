@@ -65,91 +65,96 @@ st.write("- Currencies (EUR/USD, EUR/CHF, EUR/GBP).")
 st.write("")
 st.write("")
 
-st.subheader("#1: BONDS")
-st.write("")
 
-s1, s2 = st.columns(2)
-s1.write("DOTCOM BUBBLE BURST")
-norm_c01 = df[c01[0]:c01[1]][bonds_const]
-norm_c01 = norm_c01.div(norm_c01.iloc[0])*100-100
-norm_c01.columns = ["10Y Treasury Yield", "30Y Treasury Yield", "S&P 500"]
-s1.line_chart(norm_c01)
+tab1, tab2, tab3, tab4 = st.tabs(["BONDS", "COMMODITIES", "CURRENCY RATES"])
 
-s2.write("SUBPRIME CRISES")
-norm_c02 = df[c02[0]:c02[1]][bonds_const]
-norm_c02 = norm_c02.div(norm_c02.iloc[0])*100-100
-norm_c02.columns = ["10Y", "30Y Treasury Yield", "S&P 500"]
-s2.line_chart(norm_c02)
+with tab1:
+	st.subheader("#1: BONDS")
+	st.write("")
 
-s3, s4 = st.columns(2)
-s3.write("CORONA CRISES")
-norm_c03 = df[c03[0]:c03[1]][bonds_const]
-norm_c03 = norm_c03.div(norm_c03.iloc[0])*100-100
-norm_c03.columns = ["10Y Treasury Yield", "30Y Treasury Yield", "S&P 500"]
-s3.line_chart(norm_c03)
+	s1, s2 = st.columns(2)
+	s1.write("DOTCOM BUBBLE BURST")
+	norm_c01 = df[c01[0]:c01[1]][bonds_const]
+	norm_c01 = norm_c01.div(norm_c01.iloc[0])*100-100
+	norm_c01.columns = ["10Y Treasury Yield", "30Y Treasury Yield", "S&P 500"]
+	s1.line_chart(norm_c01)
 
-s4.write("INFLATION")
-norm_c04 = df[c04[0]:c04[1]][bonds_const]
-norm_c04 = norm_c04.div(norm_c04.iloc[0])*100-100
-norm_c04.columns = ["10Y Treasury Yield", "30Y Treasury Yield", "S&P 500"]
-s4.line_chart(norm_c04)
+	s2.write("SUBPRIME CRISES")
+	norm_c02 = df[c02[0]:c02[1]][bonds_const]
+	norm_c02 = norm_c02.div(norm_c02.iloc[0])*100-100
+	norm_c02.columns = ["10Y", "30Y Treasury Yield", "S&P 500"]
+	s2.line_chart(norm_c02)
 
+	s3, s4 = st.columns(2)
+	s3.write("CORONA CRISES")
+	norm_c03 = df[c03[0]:c03[1]][bonds_const]
+	norm_c03 = norm_c03.div(norm_c03.iloc[0])*100-100
+	norm_c03.columns = ["10Y Treasury Yield", "30Y Treasury Yield", "S&P 500"]
+	s3.line_chart(norm_c03)
 
-st.subheader("#2: COMMODITIES")
-st.write("")
+	s4.write("INFLATION")
+	norm_c04 = df[c04[0]:c04[1]][bonds_const]
+	norm_c04 = norm_c04.div(norm_c04.iloc[0])*100-100
+	norm_c04.columns = ["10Y Treasury Yield", "30Y Treasury Yield", "S&P 500"]
+	s4.line_chart(norm_c04)
 
-s1, s2 = st.columns(2)
-s1.write("DOTCOM BUBBLE BURST")
-norm_c01 = df[c01[0]:c01[1]][comm_const]
-norm_c01 = norm_c01.div(norm_c01.iloc[0])*100-100
-norm_c01.columns = ["Gold", "Silver", "Crude Oil", "S&P 500"]
-s1.line_chart(norm_c01)
+with tab2:
+	st.subheader("#2: COMMODITIES")
+	st.write("")
 
-s2.write("SUBPRIME CRISES")
-norm_c02 = df[c02[0]:c02[1]][comm_const]
-norm_c02 = norm_c02.div(norm_c02.iloc[0])*100-100
-norm_c02.columns = ["Gold", "Silver", "Crude Oil", "S&P 500"]
-s2.line_chart(norm_c02)
+	s1, s2 = st.columns(2)
+	s1.write("DOTCOM BUBBLE BURST")
+	norm_c01 = df[c01[0]:c01[1]][comm_const]
+	norm_c01 = norm_c01.div(norm_c01.iloc[0])*100-100
+	norm_c01.columns = ["Gold", "Silver", "Crude Oil", "S&P 500"]
+	s1.line_chart(norm_c01)
 
-s3, s4 = st.columns(2)
-s3.write("CORONA CRISES")
-norm_c03 = df[c03[0]:c03[1]][comm_const]
-norm_c03 = norm_c03.div(norm_c03.iloc[0])*100-100
-norm_c03.columns = ["Gold", "Silver", "Crude Oil", "S&P 500"]
-s3.line_chart(norm_c03)
+	s2.write("SUBPRIME CRISES")
+	norm_c02 = df[c02[0]:c02[1]][comm_const]
+	norm_c02 = norm_c02.div(norm_c02.iloc[0])*100-100
+	norm_c02.columns = ["Gold", "Silver", "Crude Oil", "S&P 500"]
+	s2.line_chart(norm_c02)
 
-s4.write("INFLATION")
-norm_c04 = df[c04[0]:c04[1]][comm_const]
-norm_c04 = norm_c04.div(norm_c04.iloc[0])*100-100
-norm_c04.columns = ["Gold", "Silver", "Crude Oil", "S&P 500"]
-s4.line_chart(norm_c04)
+	s3, s4 = st.columns(2)
+	s3.write("CORONA CRISES")
+	norm_c03 = df[c03[0]:c03[1]][comm_const]
+	norm_c03 = norm_c03.div(norm_c03.iloc[0])*100-100
+	norm_c03.columns = ["Gold", "Silver", "Crude Oil", "S&P 500"]
+	s3.line_chart(norm_c03)
 
-st.subheader("#3: CURRENCY EXCHANGE RATES")
-st.write("")
+	s4.write("INFLATION")
+	norm_c04 = df[c04[0]:c04[1]][comm_const]
+	norm_c04 = norm_c04.div(norm_c04.iloc[0])*100-100
+	norm_c04.columns = ["Gold", "Silver", "Crude Oil", "S&P 500"]
+	s4.line_chart(norm_c04)
 
-s1, s2 = st.columns(2)
-s1.write("DOTCOM BUBBLE BURST")
-norm_c01 = df[c01[0]:c01[1]][comm_const]
-norm_c01 = norm_c01.div(norm_c01.iloc[0])*100-100
-norm_c01.columns = ["Gold", "Silver", "Crude Oil", "S&P 500"]
-norm_c01.columns = ["EUR/USD", "EUR/CHF", "EUR/GBP", "S&P 500"]
-s1.line_chart(norm_c01)
+with tab3:
+	st.subheader("#3: CURRENCY EXCHANGE RATES")
+	st.write("")
 
-s2.write("SUBPRIME CRISES")
-norm_c02 = df[c02[0]:c02[1]][comm_const]
-norm_c02 = norm_c02.div(norm_c02.iloc[0])*100-100
-norm_c02.columns = ["EUR/USD", "EUR/CHF", "EUR/GBP", "S&P 500"]
-s2.line_chart(norm_c02)
+	s1, s2 = st.columns(2)
+	s1.write("DOTCOM BUBBLE BURST")
+	norm_c01 = df[c01[0]:c01[1]][comm_const]
+	norm_c01 = norm_c01.div(norm_c01.iloc[0])*100-100
+	norm_c01.columns = ["Gold", "Silver", "Crude Oil", "S&P 500"]
+	norm_c01.columns = ["EUR/USD", "EUR/CHF", "EUR/GBP", "S&P 500"]
+	s1.line_chart(norm_c01)
 
-s3, s4 = st.columns(2)
-s3.write("CORONA CRISES")
-norm_c03 = df[c03[0]:c03[1]][comm_const]
-norm_c03 = norm_c03.div(norm_c03.iloc[0])*100-100
-norm_c03.columns = ["EUR/USD", "EUR/CHF", "EUR/GBP", "S&P 500"]
-s3.line_chart(norm_c03)
+	s2.write("SUBPRIME CRISES")
+	norm_c02 = df[c02[0]:c02[1]][comm_const]
+	norm_c02 = norm_c02.div(norm_c02.iloc[0])*100-100
+	norm_c02.columns = ["EUR/USD", "EUR/CHF", "EUR/GBP", "S&P 500"]
+	s2.line_chart(norm_c02)
 
-s4.write("INFLATION")
-norm_c04 = df[c04[0]:c04[1]][comm_const]
-norm_c04 = norm_c04.div(norm_c04.iloc[0])*100-100
-norm_c04.columns = ["EUR/USD", "EUR/CHF", "EUR/GBP", "S&P 500"]
-s4.line_chart(norm_c04)
+	s3, s4 = st.columns(2)
+	s3.write("CORONA CRISES")
+	norm_c03 = df[c03[0]:c03[1]][comm_const]
+	norm_c03 = norm_c03.div(norm_c03.iloc[0])*100-100
+	norm_c03.columns = ["EUR/USD", "EUR/CHF", "EUR/GBP", "S&P 500"]
+	s3.line_chart(norm_c03)
+
+	s4.write("INFLATION")
+	norm_c04 = df[c04[0]:c04[1]][comm_const]
+	norm_c04 = norm_c04.div(norm_c04.iloc[0])*100-100
+	norm_c04.columns = ["EUR/USD", "EUR/CHF", "EUR/GBP", "S&P 500"]
+	s4.line_chart(norm_c04)
