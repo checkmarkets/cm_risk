@@ -36,14 +36,13 @@ start_date = datetime.strptime(start_date,'%Y-%m-%d')
 with st.sidebar:
 	if "ticker" not in st.session_state:
 		st.session_state["ticker"] = ""
-	ticker = st.text_input("Enter a Ticker here", st.session_state["ticker"])
+	ticker = st.text_input("Enter a Ticker here (Try **AAPL.US** or **MSFT.US**)", st.session_state["ticker"]).upper()
 	submit = st.button("Submit")
 	
 	if submit:
-		st.session_state["ticker"] = ticker
+		st.session_state["ticker"] = ticker.upper()
 		st.write("You are analyzing: ", ticker)
-
-
+    	
 ticker_iex = ticker.replace('.US', '')
 
 
