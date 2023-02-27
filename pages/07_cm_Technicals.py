@@ -82,52 +82,56 @@ ma200_dist = round(ma200_dist, 1)
 ma200_dist = str(ma200_dist) + " %"
 
 
-st.header("TECHNICAL ANALYSIS")
+st.title("TECHNICAL ANALYSIS")
 st.write("Technical analysis help you to identify trends in a stock's price, which provides valuable insights into the stock's performance and potential future movements. Our focus especially deals with technical risk analysis.")
 
-st.subheader("Trend Analysis")
+tab1, tab2 = st.tabs(["TREND ANALYSIS", "BENCHMARK ANALYSIS"])
 
-return1y = str(round((df.iloc[-1, 0]/df.iloc[0, 0]-1) * 100, 1)) + " %"
+with tab1:
+	st.header("Trend Analysis")
 
-# Technical Dashboard
-row1col1, row1col2, row1col3 = st.columns(3)
-row1col1.metric(label="Current Price (1y Return)", value= currPrice, delta= return1y)
-row1col2.metric(label="52wk High (% needed for new 52wk High)", value = ytdHigh, delta = high_dist)
-row1col3.metric(label="52wk Low (return since 52wk Low)", value = ytdLow, delta = low_dist)
+	return1y = str(round((df.iloc[-1, 0]/df.iloc[0, 0]-1) * 100, 1)) + " %"
 
-row2col1, row2col2, row2col3 = st.columns(3)
-row2col1.metric(label="50 Days Moving Avg", value = last_ma50, delta= ma50_dist)
-row2col2.metric(label="100 Days Moving Avg", value = last_ma100, delta = ma100_dist)
-row2col3.metric(label="200 Days Moving Avg", value = last_ma200, delta = ma200_dist)
+	# Technical Dashboard
+	row1col1, row1col2, row1col3 = st.columns(3)
+	row1col1.metric(label="Current Price (1y Return)", value= currPrice, delta= return1y)
+	row1col2.metric(label="52wk High (% needed for new 52wk High)", value = ytdHigh, delta = high_dist)
+	row1col3.metric(label="52wk Low (return since 52wk Low)", value = ytdLow, delta = low_dist)
 
-with st.expander("EXPLANATION"):
-	st.markdown("**Negative values**: The stock needs to reach this return in order to break this level.")
-	st.markdown("**Positive values**: The stock has reached this return since having topped this level.")
+	row2col1, row2col2, row2col3 = st.columns(3)
+	row2col1.metric(label="50 Days Moving Avg", value = last_ma50, delta= ma50_dist)
+	row2col2.metric(label="100 Days Moving Avg", value = last_ma100, delta = ma100_dist)
+	row2col3.metric(label="200 Days Moving Avg", value = last_ma200, delta = ma200_dist)
+
+	with st.expander("EXPLANATION"):
+		st.markdown("**Negative values**: The stock needs to reach this return in order to break this level.")
+		st.markdown("**Positive values**: The stock has reached this return since having topped this level.")
 
 
 #### CHARTING ####
 
-st.subheader('BENCHMARK ANALYSIS (VS S&P 500)')
+with tab2:
+	st.header('BENCHMARK ANALYSIS (VS S&P 500)')
 
-ref_index = "^GSPC"
+	ref_index = "^GSPC"
 
-new_ticker = ticker.replace(".US", "")
-new_ticker_list = [new_ticker, ref_index]
+	new_ticker = ticker.replace(".US", "")
+	new_ticker_list = [new_ticker, ref_index]
 
-new_df = yf.download(new_ticker_list)["Adj Close"].dropna()
-new_df.columns = [new_ticker, "S&P 500"]
+	new_df = yf.download(new_ticker_list)["Adj Close"].dropna()
+	new_df.columns = [new_ticker, "S&P 500"]
 
-new_norm_df = new_df.div(new_df.iloc[0]) * 100
-new_norm_1y = new_df.div(new_df.iloc[-days_year]) * 100
-new_norm_3y = new_df.div(new_df.iloc[-days_3y]) * 100
+	new_norm_df = new_df.div(new_df.iloc[0]) * 100
+	new_norm_1y = new_df.div(new_df.iloc[-days_year]) * 100
+	new_norm_3y = new_df.div(new_df.iloc[-days_3y]) * 100
 
-chart_timeframe = st.selectbox("Which chart would you like to see?", ("1y", "3y", "All-Time"))    
-if ticker:
-	if chart_timeframe == "1y":
-		st.line_chart(new_norm_1y.loc[start_date:])
-	if chart_timeframe == "3y":
-		st.line_chart(new_norm_3y.iloc[-days_year*3:])
-	if chart_timeframe == "All-Time":
-		st.line_chart(new_norm_df)
+	chart_timeframe = st.selectbox("Which chart would you like to see?", ("1y", "3y", "All-Time"))    
+	if ticker:
+		if chart_timeframe == "1y":
+			st.line_chart(new_norm_1y.loc[start_date:])
+		if chart_timeframe == "3y":
+			st.line_chart(new_norm_3y.iloc[-days_year*3:])
+		if chart_timeframe == "All-Time":
+			st.line_chart(new_norm_df)
 
 
