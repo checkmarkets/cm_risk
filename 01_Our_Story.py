@@ -13,7 +13,7 @@ st.image('casino_coverphoto.jpeg')
 
 ### CONTENT ###
 st.title("You love to minimize risk better than anybody else?")
-stock_query = '[Search Your Stock HERE!](https://checkmarkets.streamlit.app/List_of_Stocks)'
+stock_query = '[Search Your Stock HERE!](https://checkmarkets.streamlit.app/cm_List_of_Stocks)'
 st.subheader(stock_query)
 st.subheader("Then better check out this website. With check.markets you learn how much money you REALLY risk when investing in US stocks.")
 st.write("**Empowered by exclusive access to market and fundamental data, check.markets will now better be your favorite go-to place for profound risk analysis for US stock investments.** So if you're ready to take your risk analysis to the next level, add this website to your bookmarks!")
