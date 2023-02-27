@@ -31,7 +31,7 @@ with col3:
 
 	
 st.title("List of Available Stocks")
-st.write("Just press **'Ctrl+F'** or scroll down to find the most interesting stocks that you would like to analyze. Columns 'Sector' and 'Industry' show you in which area these companies operate.") 
+st.write("Just press **'Ctrl+F'** or scroll down to find the most interesting stocks that you would like to analyze. Columns 'Sector' and 'Industry' show you which area these companies operate in.") 
 st.write("**You can find the Ticker symbol in the left column.**")
 
 ### DATA RETRIEVAL ###
