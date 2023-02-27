@@ -25,6 +25,21 @@ with st.sidebar:
     	
 ticker_iex = ticker.replace('.US', '')
 
+
+### LOGO POSITIONING ####
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.write(' ')
+
+with col2:
+    st.image('LOGO.jpg')
+
+with col3:
+    st.write(' ')
+
+
 ### MARKET DASHBOARD ###
 
 st.title("MARKET DASHBOARD")
