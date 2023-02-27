@@ -60,19 +60,3 @@ eurusd, eurchf, eurgbp = st.columns(3)
 eurusd.metric(label = "EUR/USD", value= round(data["EURUSD=X"].iloc[-1],4), delta = str(round((data["EURUSD=X"].iloc[-1]/data["EURUSD=X"].iloc[-2]-1)*100,2))+"%")
 eurchf.metric(label = "EUR/CHF", value = round(data["EURCHF=X"].iloc[-1],4), delta = str(round((data["EURCHF=X"].iloc[-1]/data["EURCHF=X"].iloc[-2]-1)*100,2))+"%")
 eurgbp.metric(label = "EUR/GBP", value = round(data["EURGBP=X"].iloc[-1],4), delta = str(round((data["EURGBP=X"].iloc[-1]/data["EURGBP=X"].iloc[-2]-1)*100,2))+"%")
-
-
-st.write("")
-st.write("")
-
-st.title('LATEST MARKET NEWS')
-st.write("")
-
-### NEWS ###
-
-market_news = c.marketNewsDF()#[:20]
-#market_news[["source","headline","summary"]]
-market_news = market_news[["source","summary"]]
-
-
-st.table(market_news)
