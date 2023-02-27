@@ -63,10 +63,8 @@ crises_list = ["^GSPC", ticker_iex]
 crises_df = yf.download(crises_list, interval = "1d")["Adj Close"]
 
 #MAX DRAWDOWN
-st.write("")
-st.write("")
 
-tab1, tab2, tab3, tab4 = st.tabs(["Maximum Drawdown", "Risk Dashboard", "Inverted Yield Curve", "Financial Crises Analysis"])
+tab1, tab2, tab3, tab4 = st.tabs(["MAXIMUM DRAWDOWN", "RISK DASHBOARD", "(INVERTED) YIELD CURVE", "PERFORMANCE DURING FINANCIAL CRISES"])
 
 with tab1:
 	st.subheader("Maximum Drawdown Chart ("+ticker+" vs. S&P 500)")
