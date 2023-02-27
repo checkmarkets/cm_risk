@@ -45,13 +45,18 @@ ticker_iex = ticker.replace('.US', '')
 
 st.title(ticker_iex + " NEWS TICKER")
 
-st.subheader("check.markets offers up-to-date and reliable corporate stock-related news. ")
+st.write("check.markets offers up-to-date and reliable corporate stock-related news. ")
 st.write("This is especially beneficial to find out what has moved the stock today or recently. Another great advantage: You don't need to click any links. Just read the summary of the article to be informed.")
 news = c.newsDF(ticker_iex)
-#news = news[["source","headline","summary"]]
 news = news[["source","summary"]]
 
-
-
-#with st.expander("COMPANY NEWS"):
-st.table(news)
+st.write("Source: "+news.iloc[0,0])
+st.write(news.iloc[0,1])
+st.write("Source: "+news.iloc[1,0])
+st.write(news.iloc[1,1])
+st.write("Source: "+news.iloc[2,0])
+st.write(news.iloc[2,1])
+st.write("Source: "+news.iloc[3,0])
+st.write(news.iloc[3,1])
+st.write("Source: "+news.iloc[4,0])
+st.write(news.iloc[4,1])
