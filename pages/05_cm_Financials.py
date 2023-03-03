@@ -130,6 +130,7 @@ currValuation_dict = {"Price/Sales": str(currValuation.pS.iloc[0]),
 
 quality = pd.DataFrame(index = cf.index, columns = ["dE", "dOcf","dFcf", "netDebt","wc","gwRatio"])
 
+bs.cashAndEquivalents.fillna(value = 0, inplace = True)
 totalDebt = (bs.cashAndEquivalents + bs.netDebt)
 quality.dE = round(totalDebt/bs.totalStockholderEquity, 1)
 quality.dOcf = round(totalDebt/cf.totalCashFromOperatingActivities, 1)
