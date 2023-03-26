@@ -25,7 +25,9 @@ st.write("")
 st.write("______________________________________________________________________________________________________")
 st.write("If the entry of your ticker symbol (MSFT.US/AAPL.US) does not work, this is caused by me currently developing a professional high-class web-app for which I need to download ALL historical financials from US companies requiring the maximum amount of my allowed API calls per day. My data provider cuts the dispatch of data after the maximum amount was used. Please try again one day later or contact me - I will make it work for you :-)")
 st.write("As this app is TOTALLY free without any advertisements or registration or anything, I hope you forgive the inconveniences caused and try it next time!")
-
+st.write("")
+st.subheader("Want to get to know more of my work?")
+st.write("I invite you to check out my website: https://www.check.markets/ 
 with st.sidebar:
 	if "ticker" not in st.session_state:
 		st.session_state["ticker"] = ""
