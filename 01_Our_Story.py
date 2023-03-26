@@ -23,7 +23,8 @@ st.subheader(tutorial)
 st.write("If you want to know the Ticker of a specific stock, go to **List of Stocks** on the lefthand side.")
 st.write("")
 st.write("______________________________________________________________________________________________________")
-st.write("If the entry of your ticker symbol (MSFT.US/AAPL.US) does not work, this is caused by me currently working on a professional high-class web-app for which I need to download ALL historic financials of US companies requiring the maximum amount of my allowed API calls. My data provider cuts the retrieval of data after the maximum amount of 100,000 calls was used within one day. Please try again one day later or contact me - I will make it work for you :-)")
+st.write("If the entry of your ticker symbol (MSFT.US/AAPL.US) does not work, this is caused by me currently developing a professional high-class web-app for which I need to download ALL historical financials from US companies requiring the maximum amount of my allowed API calls per day. My data provider cuts the dispatch of data after the maximum amount was used. Please try again one day later or contact me - I will make it work for you :-)")
+st.write("As this app is TOTALLY free without any advertisements or registration or anything, I hope you forgive the inconveniences caused and try it next time!")
 
 with st.sidebar:
 	if "ticker" not in st.session_state:
