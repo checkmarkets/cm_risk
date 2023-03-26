@@ -21,7 +21,8 @@ st.write("**Empowered by exclusive access to market and fundamental data, check.
 tutorial = '[Learn how to get the max out of this app!](https://www.youtube.com/watch?v=nmCxvaOxEoU)'
 st.subheader(tutorial)
 st.write("If you want to know the Ticker of a specific stock, go to **List of Stocks** on the lefthand side.")
-
+st.write("")
+st.write("______________________________________________________________________________________________________")
 st.write("If the entry of your ticker symbol (MSFT.US/AAPL.US) does not work, this is caused by me currently working on a professional high-class web-app for which I need to download ALL historic financials of US companies requiring the maximum amount of my allowed API calls. My data provider cuts the retrieval of data after the maximum amount of 100,000 calls was used within one day. Please try again one day later or contact me - I will make it work for you :-)")
 
 with st.sidebar:
