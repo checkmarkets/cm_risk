@@ -18,7 +18,8 @@ st.subheader(stock_query)
 st.subheader("Then better check out this website. With check.markets you learn how much money you REALLY risk when investing in US stocks.")
 st.write("**Empowered by exclusive access to market and fundamental data, check.markets will now better be your favorite go-to place for profound risk analysis for US stock investments.** So if you're ready to take your risk analysis to the next level, add this website to your bookmarks!")
 
-st.subheader("**<--- Enter a Stock Ticker on the left-hand side.**")
+tutorial = '[Learn how to get the max out of this app!](https://www.youtube.com/watch?v=nmCxvaOxEoU)'
+st.subheader(tutorial)
 st.write("If you want to know the Ticker of a specific stock, go to **List of Stocks** on the lefthand side.")
 
 
