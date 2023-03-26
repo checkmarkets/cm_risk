@@ -27,7 +27,7 @@ st.write("If the entry of your ticker symbol (MSFT.US/AAPL.US) does not work, th
 st.write("As this app is TOTALLY free without any advertisements or registration or anything, I hope you forgive the inconveniences caused and try it next time!")
 st.write("")
 st.subheader("Want to get to know more of my work?")
-st.write("I invite you to check out my website: https://www.check.markets/ 
+st.write("I invite you to check out my website: https://www.check.markets/")
 with st.sidebar:
 	if "ticker" not in st.session_state:
 		st.session_state["ticker"] = ""
